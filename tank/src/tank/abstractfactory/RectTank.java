@@ -10,6 +10,7 @@ import tank.Bullet;
 import tank.DefaultFireStrategy;
 import tank.Dir;
 import tank.FireStrategy;
+import tank.GameModel;
 import tank.Group;
 import tank.PropertyMgr;
 import tank.ResourceMgr;
@@ -29,21 +30,20 @@ public class RectTank extends BaseTank {
 	int x, y;
 
 	Dir dir = Dir.DOWN;
-
 	private boolean moving = true;
-	TankFrame tf = null;
+	GameModel gm = null;
 	private boolean living = true;
 	Group group = Group.BAD;
 
 	FireStrategy fs;
 
-	public RectTank(int x, int y, Dir dir, Group group, TankFrame tf) {
+	public RectTank(int x, int y, Dir dir, Group group, GameModel gm) {
 		super();
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
 		this.group = group;
-		this.tf = tf;
+		this.gm = gm;
 
 		rect.x = this.x;
 		rect.y = this.y;
@@ -65,14 +65,14 @@ public class RectTank extends BaseTank {
 	}
 
 	public void fire() {
-		// fs.fire(this);
+//		 fs.fire(this);
 
 		int bX = this.x + RectTank.WIDTH / 2 - Bullet.WIDTH / 2;
 		int bY = this.y + RectTank.HEIGHT / 2 - Bullet.HEIGHT / 2;
 
 		Dir[] dirs = Dir.values();
 		for (Dir dir : dirs) {
-			tf.gf.createBullet(bX, bY, dir, group, tf);
+			gm.gf.createBullet(bX, bY, dir, group, gm);
 		}
 
 		if (group == Group.GOOD)
@@ -154,7 +154,7 @@ public class RectTank extends BaseTank {
 
 	public void paint(Graphics g) {
 		if (!living)
-			tf.tanks.remove(this);
+			gm.tanks.remove(this);
 
 		Color c = g.getColor();
 		g.setColor(group == Group.GOOD ? Color.RED : Color.BLUE);

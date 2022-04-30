@@ -1,26 +1,26 @@
 package tank.abstractfactory;
 
 import tank.Dir;
+import tank.GameModel;
 import tank.Group;
 import tank.TankFrame;
 
 public class RectFactory extends GameFactory {
 
 	@Override
-	public BaseTank createTank(int x, int y, Dir dir, Group group, TankFrame tf) {
-		// TODO Auto-generated method stub
-		return new RectTank(x, y, dir, group, tf);
+	public BaseTank createTank(int x, int y, Dir dir, Group group, GameModel gm) {
+		return new RectTank(x, y, dir, group, gm);
 	}
 
 	@Override
-	public BaseExplode createExplode(int x, int y, TankFrame tf) {
+	public BaseExplode createExplode(int x, int y, GameModel gm) {
 		// TODO Auto-generated method stub
-		return new RectExplode(x, y, tf);
+		return new RectExplode(x, y, gm);
 	}
 
 	@Override
-	public BaseBullet createBullet(int x, int y, Dir dir, Group group, TankFrame tf) {
-		return new RectBullet(x, y, dir, group, tf);
+	public BaseBullet createBullet(int x, int y, Dir dir, Group group, GameModel gm) {
+		return new RectBullet(x, y, dir, group, gm);
 	}
 
 }

@@ -23,19 +23,21 @@ public class Tank extends BaseTank {
 	Dir dir = Dir.DOWN;
 
 	private boolean moving = true;
-	TankFrame tf = null;
+	
 	private boolean living = true;
 	
 	
 	FireStrategy fs;
+	GameModel gm;
 	
-	public Tank(int x, int y, Dir dir, Group group, TankFrame tf) {
+	
+	public Tank(int x, int y, Dir dir, Group group, GameModel gm) {
 		super();
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
 		this.group = group;
-		this.tf = tf;
+		this.gm = gm;
 		
 		rect.x = this.x;
 		rect.y = this.y;
@@ -57,16 +59,16 @@ public class Tank extends BaseTank {
 	}
 	
 	public void fire() {
-		//fs.fire(this);
+		fs.fire(this);
 		
-		int bX = this.x + Tank.WIDTH/2 - Bullet.WIDTH/2;
-		int bY = this.y + Tank.HEIGHT/2 - Bullet.HEIGHT/2;
-		
-		Dir[] dirs = Dir.values();
-		for(Dir dir : dirs) {
-			tf.gf.createBullet(bX, bY, dir, group, tf);
-		}
-		
+//		int bX = this.x + Tank.WIDTH/2 - Bullet.WIDTH/2;
+//		int bY = this.y + Tank.HEIGHT/2 - Bullet.HEIGHT/2;
+//		
+//		Dir[] dirs = Dir.values();
+//		for(Dir dir : dirs) {
+//			tf.gf.createBullet(bX, bY, dir, group, tf);
+//		}
+//		
 		if(group == Group.GOOD) new Thread(()->new Audio("audio/tank_fire.wav").play()).start();
 	}
 	
@@ -138,7 +140,7 @@ public class Tank extends BaseTank {
 	}
 	
 	public void paint(Graphics g) {
-		if(!living) tf.tanks.remove(this);
+		if(!living) gm.tanks.remove(this);
 		
 		
 		

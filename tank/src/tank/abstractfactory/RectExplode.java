@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import tank.Audio;
+import tank.GameModel;
 import tank.ResourceMgr;
 import tank.TankFrame;
 
@@ -15,14 +16,13 @@ public class RectExplode extends BaseExplode {
 	private int x, y;
 	
 	//private boolean living = true;
-	TankFrame tf = null;
-	
+	GameModel gm = null;
 	private int step = 0;
 	
-	public RectExplode(int x, int y, TankFrame tf) {
+	public RectExplode(int x, int y,GameModel gm) {
 		this.x = x;
 		this.y = y;
-		this.tf = tf;
+		this.gm = gm;
 		
 		new Thread(()->new Audio("audio/explode.wav").play()).start();
 	}
@@ -38,7 +38,7 @@ public class RectExplode extends BaseExplode {
 		step++;
 		
 		if(step >= 15) 
-			tf.explodes.remove(this);
+			gm.explodes.remove(this);
 		
 		g.setColor(c);
 		

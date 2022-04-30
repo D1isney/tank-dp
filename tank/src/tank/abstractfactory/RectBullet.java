@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 
 import tank.Dir;
 import tank.Explode;
+import tank.GameModel;
 import tank.Group;
 import tank.ResourceMgr;
 import tank.Tank;
@@ -22,22 +23,22 @@ public class RectBullet extends BaseBullet {
 	private Dir dir;
 	
 	private boolean living = true;
-	TankFrame tf = null;
+	GameModel gm = null;
 	private Group group = Group.BAD;
 	
-	public RectBullet(int x, int y, Dir dir, Group group, TankFrame tf) {
+	public RectBullet(int x, int y, Dir dir, Group group, GameModel gm) {
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
 		this.group = group;
-		this.tf = tf;
+		this.gm = gm;
 		
 		rect.x = this.x;
 		rect.y = this.y;
 		rect.width = WIDTH;
 		rect.height = HEIGHT;
 		
-		tf.bullets.add(this);
+		gm.bullets.add(this);
 				
 	}
 	
@@ -51,7 +52,7 @@ public class RectBullet extends BaseBullet {
 
 	public void paint(Graphics g) {
 		if(!living) {
-			tf.bullets.remove(this);
+			gm.bullets.remove(this);
 		}
 		
 		Color c = g.getColor();
@@ -95,7 +96,7 @@ public class RectBullet extends BaseBullet {
 			this.die();
 			int eX = tank.getX() + Tank.WIDTH/2 - Explode.WIDTH/2;
 			int eY = tank.getY() + Tank.HEIGHT/2 - Explode.HEIGHT/2;
-			tf.explodes.add(tf.gf.createExplode(eX, eY, tf));
+			gm.explodes.add(new Explode(eX,eY,gm));
 		}
 		
 	}
