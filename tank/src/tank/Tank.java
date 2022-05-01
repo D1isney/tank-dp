@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.util.Random;
 
 import tank.abstractfactory.BaseTank;
+import tank.abstractfactory.RectTank;
 
 public class Tank extends BaseTank {
 	
@@ -13,7 +14,6 @@ public class Tank extends BaseTank {
 	public static int WIDTH = ResourceMgr.goodTankU.getWidth();
 
 	public static int HEIGHT = ResourceMgr.goodTankU.getHeight();
-	
 	
 	
 	private Random random = new Random();
@@ -52,9 +52,15 @@ public class Tank extends BaseTank {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-		} else {
-			fs = new DefaultFireStrategy();
+	
+		} else if(group == Group.BAD) {
+//			fs = new DefaultFireStrategy();
+			String badFSName = (String)PropertyMgr.get("badFS");
+			try {
+				fs = (FireStrategy)Class.forName(badFSName).getDeclaredConstructor().newInstance();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -66,9 +72,19 @@ public class Tank extends BaseTank {
 //		
 //		Dir[] dirs = Dir.values();
 //		for(Dir dir : dirs) {
-//			tf.gf.createBullet(bX, bY, dir, group, tf);
+//			gm.gf.createBullet(bX, bY, dir, group, gm);
 //		}
+		
+		
+		
+//		int bx = this.x + RectTank.WIDTH/2 - Bullet.WIDTH/2;
+//		int by = this.y + RectTank.HEIGHT/2 - Bullet.WIDTH/2;
 //		
+//		Dir []dirs = Dir.values();
+//		for(Dir dir : dirs) {
+//			gm.gf.createBullet(bx, by, dir, group, gm);
+//		}
+		
 		if(group == Group.GOOD) new Thread(()->new Audio("audio/tank_fire.wav").play()).start();
 	}
 	

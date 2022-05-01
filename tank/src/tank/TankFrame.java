@@ -28,7 +28,7 @@ public class TankFrame extends Frame {
 //	public List<BaseTank> tanks = new ArrayList<>();
 //	public List<BaseExplode> explodes = new ArrayList<>();
 	
-//	public GameFactory gf = new DefaultFactory();
+
 //	
 	
 	public static final int GAME_WIDTH = 1080, GAME_HEIGHT = 960;
@@ -69,14 +69,10 @@ public class TankFrame extends Frame {
 
 	@Override
 	public void paint(Graphics g) {
-		
 		gm.paint(g);
-
-
 	}
 
 	class MyKeyListener extends KeyAdapter {
-
 		boolean bL = false;
 		boolean bU = false;
 		boolean bR = false;

@@ -7,6 +7,7 @@ import tank.Group;
 
 public abstract class BaseTank {
 	public Group group = Group.BAD;
+	
 	public Rectangle rect = new Rectangle();
 	
 	public abstract void paint(Graphics g);

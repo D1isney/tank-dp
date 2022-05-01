@@ -31,11 +31,12 @@ public class RectTank extends BaseTank {
 
 	Dir dir = Dir.DOWN;
 	private boolean moving = true;
-	GameModel gm = null;
 	private boolean living = true;
 	Group group = Group.BAD;
 
 	FireStrategy fs;
+
+	GameModel gm;
 
 	public RectTank(int x, int y, Dir dir, Group group, GameModel gm) {
 		super();
@@ -67,12 +68,12 @@ public class RectTank extends BaseTank {
 	public void fire() {
 //		 fs.fire(this);
 
-		int bX = this.x + RectTank.WIDTH / 2 - Bullet.WIDTH / 2;
-		int bY = this.y + RectTank.HEIGHT / 2 - Bullet.HEIGHT / 2;
-
-		Dir[] dirs = Dir.values();
-		for (Dir dir : dirs) {
-			gm.gf.createBullet(bX, bY, dir, group, gm);
+		int bx = this.x + RectTank.WIDTH/2 - Bullet.WIDTH/2;
+		int by = this.y + RectTank.HEIGHT/2 - Bullet.WIDTH/2;
+		
+		Dir []dirs = Dir.values();
+		for(Dir dir : dirs) {
+			gm.gf.createBullet(bx, by, dir, group, gm);
 		}
 
 		if (group == Group.GOOD)

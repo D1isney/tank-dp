@@ -19,12 +19,13 @@ public class GameModel {
 	public List<BaseTank> tanks = new ArrayList<>();
 	public List<BaseExplode> explodes = new ArrayList<>();
 
+
 	public Tank getMainTank() {
 		return myTank;
 	}
 	
 	
-	public GameFactory gf = new DefaultFactory();
+	public GameFactory gf = new DefaultFactory();	
 
 	//创建一个门面模式
 	public GameModel() {

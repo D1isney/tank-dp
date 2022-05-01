@@ -14,7 +14,6 @@ public class RectFactory extends GameFactory {
 
 	@Override
 	public BaseExplode createExplode(int x, int y, GameModel gm) {
-		// TODO Auto-generated method stub
 		return new RectExplode(x, y, gm);
 	}
 

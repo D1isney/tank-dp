@@ -31,10 +31,6 @@ public class Explode extends BaseExplode {
 		
 		if(step >= ResourceMgr.explodes.length) 
 			gm.explodes.remove(this);
-		
-		
 	}
-	
-	
 
 }
