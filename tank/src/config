@@ -1,5 +1,5 @@
 #tanks count at initialization
-initTankCount=5
+initTankCount=10
 tankSpeed=5
 bulletSpeed=10
 gameWidth=1080
@@ -7,3 +7,5 @@ gameHeight=720
 #FireStrategy
 goodFS=tank.strategy.FourDirFireStrategy
 badFS=tank.strategy.DefaultFireStrategy
+#ColliDers
+ColliDers = tank.cor.BulletTankCollider,tank.cor.TankTankCollider

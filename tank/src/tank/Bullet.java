@@ -90,15 +90,17 @@ public class Bullet extends GameObject {
 		
 	}
 
-	public void collideWith(Tank tank) {
-		if(this.group == tank.getGroup()) return;
+	public boolean collideWith(Tank tank) {
+		if(this.group == tank.getGroup()) return false;
 		if(rect.intersects(tank.rect)) {
 			tank.die();
 			this.die();
 			int eX = tank.getX() + Tank.WIDTH/2 - Explode.WIDTH/2;
 			int eY = tank.getY() + Tank.HEIGHT/2 - Explode.HEIGHT/2;
 			gm.add(new Explode(eX,eY,gm));
+			return true;
 		}
+		return false;
 	}
 
 	private void die() {
