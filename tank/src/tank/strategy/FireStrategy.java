@@ -1,6 +1,6 @@
-package tank;
+package tank.strategy;
 
-import tank.abstractfactory.RectTank;
+import tank.Tank;
 
 public interface FireStrategy {
 	void fire(Tank t);

@@ -8,14 +8,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.List;
 
-import tank.abstractfactory.BaseBullet;
-import tank.abstractfactory.BaseExplode;
-import tank.abstractfactory.BaseTank;
-import tank.abstractfactory.DefaultFactory;
-import tank.abstractfactory.GameFactory;
 
 public class TankFrame extends Frame {
 	

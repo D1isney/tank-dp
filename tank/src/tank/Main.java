@@ -1,7 +1,5 @@
 package tank;
 
-import tank.abstractfactory.DefaultFactory;
-import tank.abstractfactory.GameFactory;
 
 public class Main {
 

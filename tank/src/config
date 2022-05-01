@@ -5,5 +5,5 @@ bulletSpeed=10
 gameWidth=1080
 gameHeight=720
 #FireStrategy
-goodFS=tank.FourDirFireStrategy
-badFS=tank.DefaultFireStrategy
+goodFS=tank.strategy.FourDirFireStrategy
+badFS=tank.strategy.DefaultFireStrategy

@@ -4,10 +4,11 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Random;
 
-import tank.abstractfactory.BaseTank;
-import tank.abstractfactory.RectTank;
+import tank.strategy.DefaultFireStrategy;
+import tank.strategy.FireStrategy;
+import tank.strategy.FourDirFireStrategy;
 
-public class Tank extends BaseTank {
+public class Tank extends GameObject {
 	
 	
 	private static final int SPEED = 2;
@@ -15,20 +16,23 @@ public class Tank extends BaseTank {
 
 	public static int HEIGHT = ResourceMgr.goodTankU.getHeight();
 	
+	public Rectangle rect = new Rectangle();
 	
 	private Random random = new Random();
 
-	int x, y;
+	public int x, y;
 
-	Dir dir = Dir.DOWN;
+	public Dir dir = Dir.DOWN;
 
+	public Group group = Group.BAD;
+	
 	private boolean moving = true;
 	
 	private boolean living = true;
 	
 	
 	FireStrategy fs;
-	GameModel gm;
+	public GameModel gm;
 	
 	
 	public Tank(int x, int y, Dir dir, Group group, GameModel gm) {
@@ -45,6 +49,7 @@ public class Tank extends BaseTank {
 		rect.height = HEIGHT;
 		
 		if(group == Group.GOOD) {
+//			fs = new FourDirFireStrategy();
 			String goodFSName = (String)PropertyMgr.get("goodFS");
 			
 			try {
@@ -53,14 +58,14 @@ public class Tank extends BaseTank {
 				e.printStackTrace();
 			}
 	
-		} else if(group == Group.BAD) {
-//			fs = new DefaultFireStrategy();
-			String badFSName = (String)PropertyMgr.get("badFS");
-			try {
-				fs = (FireStrategy)Class.forName(badFSName).getDeclaredConstructor().newInstance();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		} else {
+			fs = new DefaultFireStrategy();
+//			String badFSName = (String)PropertyMgr.get("badFS");
+//			try {
+//				fs = (FireStrategy)Class.forName(badFSName).getDeclaredConstructor().newInstance();
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
 		}
 	}
 	
@@ -156,7 +161,7 @@ public class Tank extends BaseTank {
 	}
 	
 	public void paint(Graphics g) {
-		if(!living) gm.tanks.remove(this);
+		if(!living) gm.remove(this);
 		
 		
 		
