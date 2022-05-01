@@ -7,6 +7,8 @@ import java.util.List;
 
 import tank.cor.BulletTankCollider;
 import tank.cor.Collider;
+import tank.cor.ColliderChain;
+import tank.cor.TankTankCollider;
 
 
 public class GameModel {
@@ -17,7 +19,10 @@ public class GameModel {
 //	public List<BaseTank> tanks = new ArrayList<>();
 //	public List<BaseExplode> explodes = new ArrayList<>();
 	
-	Collider colider = new BulletTankCollider();
+//	Collider colider1 = new BulletTankCollider();
+//	Collider colider2 = new TankTankCollider();
+	
+	ColliderChain chain = new ColliderChain();
 	
 	private List<GameObject> objects = new ArrayList();
 
@@ -67,8 +72,19 @@ public class GameModel {
 //				o1.collideWith(o2);
 				
 				//碰撞器
-				colider.collider(o1, o2);
+//				colider1.collider(o1, o2);
+//				colider2.collider(o1, o2);
 				
+				/**
+				 * 第一种写法
+				 * 遍历for
+				 */
+				
+				/**
+				 * 第二种写法
+				 * 让链条自己去撞
+				 */
+				chain.collide(o1,o2);
 			}
 		}
 		

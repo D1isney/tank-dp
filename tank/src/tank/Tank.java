@@ -19,22 +19,23 @@ public class Tank extends GameObject {
 	public Rectangle rect = new Rectangle();
 	
 	private Random random = new Random();
-
 	public int x, y;
 
+	//记录上一次的变量
+	public int oldx,oldy;
+	
 	public Dir dir = Dir.DOWN;
 
 	public Group group = Group.BAD;
-	
+
 	private boolean moving = true;
 	
 	private boolean living = true;
 	
-	
 	FireStrategy fs;
+	
+	
 	public GameModel gm;
-	
-	
 	public Tank(int x, int y, Dir dir, Group group, GameModel gm) {
 		super();
 		this.x = x;
@@ -69,6 +70,18 @@ public class Tank extends GameObject {
 		}
 	}
 	
+	
+	private void boundsCheck() {
+		if (this.x < 2) x = 2;
+		if (this.y < 28) y = 28;
+		if (this.x > TankFrame.GAME_WIDTH- Tank.WIDTH -2) x = TankFrame.GAME_WIDTH - Tank.WIDTH -2;
+		if (this.y > TankFrame.GAME_HEIGHT - Tank.HEIGHT -2 ) y = TankFrame.GAME_HEIGHT -Tank.HEIGHT -2;
+	}
+	
+	public void die() {
+		this.living = false;
+	}
+	
 	public void fire() {
 		fs.fire(this);
 		
@@ -97,16 +110,15 @@ public class Tank extends GameObject {
 		return dir;
 	}
 	
-	public int getX() {
-		return x;
-	}
-	
 	
 	public Group getGroup() {
 		return group;
 	}
-	public void setGroup(Group group) {
-		this.group = group;
+	public Rectangle getRect() {
+		return rect;
+	}
+	public int getX() {
+		return x;
 	}
 	public int getY() {
 		return y;
@@ -117,6 +129,8 @@ public class Tank extends GameObject {
 	}
 
 	private void move() {
+		oldx = x;
+		oldy = y;
 		
 		if(!moving) return ;
 		
@@ -145,25 +159,10 @@ public class Tank extends GameObject {
 		//update rect
 		rect.x = this.x;
 		rect.y = this.y;
-		
-	}
-
-	private void boundsCheck() {
-		if (this.x < 2) x = 2;
-		if (this.y < 28) y = 28;
-		if (this.x > TankFrame.GAME_WIDTH- Tank.WIDTH -2) x = TankFrame.GAME_WIDTH - Tank.WIDTH -2;
-		if (this.y > TankFrame.GAME_HEIGHT - Tank.HEIGHT -2 ) y = TankFrame.GAME_HEIGHT -Tank.HEIGHT -2;
-	}
-	
-	private void randomDir() {
-		
-		this.dir = Dir.values()[random.nextInt(4)];
 	}
 	
 	public void paint(Graphics g) {
 		if(!living) gm.remove(this);
-		
-		
 		
 		switch(dir) {
 		case LEFT:
@@ -183,10 +182,17 @@ public class Tank extends GameObject {
 		move();
 	
 	}
-
+	
+	private void randomDir() {
+		this.dir = Dir.values()[random.nextInt(4)];
+	}
 
 	public void setDir(Dir dir) {
 		this.dir = dir;
+	}
+
+	public void setGroup(Group group) {
+		this.group = group;
 	}
 
 	public void setMoving(boolean moving) {
@@ -196,14 +202,14 @@ public class Tank extends GameObject {
 	public void setX(int x) {
 		this.x = x;
 	}
-
 	public void setY(int y) {
 		this.y = y;
 	}
-	public void die() {
-		this.living = false;
+	
+	public void tanktankcollider() {
+		this.x = oldx;
+		this.y = oldy;
+		
 	}
 	
-	
-
 }

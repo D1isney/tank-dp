@@ -16,14 +16,11 @@ public class TankFrame extends Frame {
 
 //	Tank myTank = new Tank(200, 400, Dir.DOWN, Group.GOOD, this);
 	
-	//全都移到门面模式上管理
+//	全都移到门面模式上管理
 //	public List<BaseBullet> bullets = new ArrayList<>();
 //	public List<BaseTank> tanks = new ArrayList<>();
 //	public List<BaseExplode> explodes = new ArrayList<>();
-	
 
-//	
-	
 	public static final int GAME_WIDTH = 1280, GAME_HEIGHT = 700;
 
 	public TankFrame() {
@@ -31,16 +28,12 @@ public class TankFrame extends Frame {
 		setResizable(false);
 		setTitle("tank war");
 		setVisible(true);
-
 		this.addKeyListener(new MyKeyListener());
-
 		addWindowListener(new WindowAdapter() {
-
 			@Override
 			public void windowClosing(WindowEvent e) { // bjmashibing/tank
 				System.exit(0);
 			}
-
 		});
 	}
 
@@ -48,9 +41,11 @@ public class TankFrame extends Frame {
 
 	@Override
 	public void update(Graphics g) {
+
 		if (offScreenImage == null) {
 			offScreenImage = this.createImage(GAME_WIDTH, GAME_HEIGHT);
 		}
+		
 		Graphics gOffScreen = offScreenImage.getGraphics();
 		Color c = gOffScreen.getColor();
 		gOffScreen.setColor(Color.BLACK);
@@ -131,7 +126,6 @@ public class TankFrame extends Frame {
 				myTank.setMoving(false);
 			else {
 				myTank.setMoving(true);
-
 				if (bL)
 					myTank.setDir(Dir.LEFT);
 				if (bU)
