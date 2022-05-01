@@ -5,6 +5,9 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
+import tank.cor.BulletTankCollider;
+import tank.cor.Collider;
+
 
 public class GameModel {
 
@@ -14,14 +17,14 @@ public class GameModel {
 //	public List<BaseTank> tanks = new ArrayList<>();
 //	public List<BaseExplode> explodes = new ArrayList<>();
 	
+	Collider colider = new BulletTankCollider();
+	
 	private List<GameObject> objects = new ArrayList();
 
 	public Tank getMainTank() {
 		return myTank;
 	}
 	
-	
-
 	//创建一个门面模式
 	public GameModel() {
 		int initTankCount = Integer.parseInt((String)PropertyMgr.get("initTankCount"));
@@ -52,6 +55,25 @@ public class GameModel {
 		for (int i = 0; i <objects.size(); i++) {
 			objects.get(i).paint(g);
 		}
+		
+		//碰撞逻辑
+		for(int i = 0;i<objects.size();i++) {
+			for(int j = i+1;j<objects.size();j++) {
+				//把i,j每个都拿出来碰撞
+				//互相之间看看能不能相互碰撞
+				GameObject o1 = objects.get(i);
+				GameObject o2 = objects.get(j);
+//				也要判断类型
+//				o1.collideWith(o2);
+				
+				//碰撞器
+				colider.collider(o1, o2);
+				
+			}
+		}
+		
+		
+		
 		
 		// for(Iterator<Bullet> it = bullets.iterator(); it.hasNext();) {
 		// Bullet b = it.next();

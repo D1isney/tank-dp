@@ -24,7 +24,7 @@ public class TankFrame extends Frame {
 
 //	
 	
-	public static final int GAME_WIDTH = 1080, GAME_HEIGHT = 960;
+	public static final int GAME_WIDTH = 1280, GAME_HEIGHT = 700;
 
 	public TankFrame() {
 		setSize(GAME_WIDTH, GAME_HEIGHT);

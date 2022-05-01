@@ -92,7 +92,6 @@ public class Bullet extends GameObject {
 
 	public void collideWith(Tank tank) {
 		if(this.group == tank.getGroup()) return;
-		
 		if(rect.intersects(tank.rect)) {
 			tank.die();
 			this.die();
@@ -100,7 +99,6 @@ public class Bullet extends GameObject {
 			int eY = tank.getY() + Tank.HEIGHT/2 - Explode.HEIGHT/2;
 			gm.add(new Explode(eX,eY,gm));
 		}
-		
 	}
 
 	private void die() {
