@@ -31,7 +31,7 @@ public class TankFrame extends Frame {
 		this.addKeyListener(new MyKeyListener());
 		addWindowListener(new WindowAdapter() {
 			@Override
-			public void windowClosing(WindowEvent e) { // bjmashibing/tank
+			public void windowClosing(WindowEvent e) {
 				System.exit(0);
 			}
 		});

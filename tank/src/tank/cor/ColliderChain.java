@@ -16,9 +16,12 @@ public class ColliderChain implements Collider{
 	 * 对list做了一个封转
 	 */
 	
+	//责任链 逻辑链
 	public ColliderChain() {
 		add(new BulletTankCollider());
 		add(new TankTankCollider());
+		add(new BulletWallCollider());
+		add(new TankWallCollider());
 	}
 	
 	public void add(Collider c) {
