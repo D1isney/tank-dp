@@ -4,15 +4,18 @@ import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.ImageIcon;
+
 
 public class TankFrame extends Frame {
 	
-	GameModel gm = new GameModel();
+//	GameModel gm = new GameModel();
 
 //	Tank myTank = new Tank(200, 400, Dir.DOWN, Group.GOOD, this);
 	
@@ -26,7 +29,7 @@ public class TankFrame extends Frame {
 	public TankFrame() {
 		setSize(GAME_WIDTH, GAME_HEIGHT);
 		setResizable(false);
-		setTitle("tank war");
+		setTitle("坦克大战");
 		setVisible(true);
 		this.addKeyListener(new MyKeyListener());
 		addWindowListener(new WindowAdapter() {
@@ -57,7 +60,7 @@ public class TankFrame extends Frame {
 
 	@Override
 	public void paint(Graphics g) {
-		gm.paint(g);
+		GameModel.getInstance().paint(g);
 	}
 
 	class MyKeyListener extends KeyAdapter {
@@ -110,7 +113,7 @@ public class TankFrame extends Frame {
 				break;
 
 			case KeyEvent.VK_CONTROL:
-				gm.getMainTank().fire();
+				GameModel.getInstance().getMainTank().fire();
 				break;
 
 			default:
@@ -121,7 +124,7 @@ public class TankFrame extends Frame {
 		}
 
 		private void setMainTankDir() {
-			Tank myTank =gm.getMainTank();
+			Tank myTank =GameModel.getInstance().getMainTank();
 			if (!bL && !bU && !bR && !bD)
 				myTank.setMoving(false);
 			else {

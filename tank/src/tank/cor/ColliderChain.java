@@ -5,6 +5,9 @@ import java.util.List;
 
 import tank.GameObject;
 
+/**
+ * 高内聚 低耦合
+ */
 //责任链
 public class ColliderChain implements Collider{
 											//链表

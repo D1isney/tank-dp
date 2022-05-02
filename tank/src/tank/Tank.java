@@ -35,14 +35,15 @@ public class Tank extends GameObject {
 	FireStrategy fs;
 	
 	
-	public GameModel gm;
-	public Tank(int x, int y, Dir dir, Group group, GameModel gm) {
+//	public GameModel gm;
+	
+	public Tank(int x, int y, Dir dir, Group group) {
 		super();
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
 		this.group = group;
-		this.gm = gm;
+//		this.gm = gm;
 		
 		rect.x = this.x;
 		rect.y = this.y;
@@ -52,7 +53,6 @@ public class Tank extends GameObject {
 		if(group == Group.GOOD) {
 //			fs = new FourDirFireStrategy();
 			String goodFSName = (String)PropertyMgr.get("goodFS");
-			
 			try {
 				fs = (FireStrategy)Class.forName(goodFSName).getDeclaredConstructor().newInstance();
 			} catch (Exception e) {
@@ -68,6 +68,8 @@ public class Tank extends GameObject {
 //				e.printStackTrace();
 //			}
 		}
+		
+		GameModel.getInstance().add(this);
 	}
 	
 	
@@ -163,7 +165,7 @@ public class Tank extends GameObject {
 	}
 	
 	public void paint(Graphics g) {
-		if(!living) gm.remove(this);
+		if(!living) GameModel.getInstance().remove(this);
 		
 		switch(dir) {
 		case LEFT:

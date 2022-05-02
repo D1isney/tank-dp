@@ -12,9 +12,16 @@ import tank.cor.TankTankCollider;
 
 
 public class GameModel {
+	//饿汉式-单例
+	private static final GameModel INSTANCE = new GameModel();
 
-	Tank myTank = new Tank(200, 400, Dir.DOWN, Group.GOOD, this);
-//	
+	//静态语句块
+	static {
+		INSTANCE.init();
+	}
+	
+	Tank myTank;
+	
 //	public List<BaseBullet> bullets = new ArrayList<>();
 //	public List<BaseTank> tanks = new ArrayList<>();
 //	public List<BaseExplode> explodes = new ArrayList<>();
@@ -26,6 +33,10 @@ public class GameModel {
 	
 	private List<GameObject> objects = new ArrayList();
 
+	public static GameModel getInstance() {
+		return INSTANCE;
+	}
+	
 	public Tank getMainTank() {
 		return myTank;
 	}
@@ -34,11 +45,16 @@ public class GameModel {
 	 * 大管家
 	 */
 	//创建一个门面模式
-	public GameModel() {
+	private GameModel() {
+}
+	
+	private void init(){
+		//初始化主战坦克
+		myTank = new Tank(200,400,Dir.DOWN,Group.GOOD);
 		int initTankCount = Integer.parseInt((String)PropertyMgr.get("initTankCount"));
 		//初始化敌方坦克
 		for(int i=0; i<initTankCount; i++) {
-			add(new Tank(50 + i*80, 200, Dir.DOWN, Group.BAD, this));
+			new Tank(50 + i*80, 200, Dir.DOWN, Group.BAD);
 		}
 		
 		//初始化墙
@@ -94,12 +110,8 @@ public class GameModel {
 				 * 让链条自己去撞
 				 */
 				chain.collide(o1,o2);
-				
 			}
 		}
-		
-		
-		
 		
 		// for(Iterator<Bullet> it = bullets.iterator(); it.hasNext();) {
 		// Bullet b = it.next();
