@@ -9,6 +9,7 @@ public abstract class GoDecorator extends GameObject {
 	GameObject go;
 	
 	public GoDecorator(GameObject go) {
+
 		this.go = go;
 	}
 	

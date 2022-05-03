@@ -13,11 +13,13 @@ public class TailDecorator extends GoDecorator {
 
 	@Override
 	public void paint(Graphics g) {
+		this.x = go.x;
+		this.y = go.y;
 		go.paint(g);
 		
 		Color c = g.getColor();
 		g.setColor(Color.YELLOW);
-		g.drawLine(super.go.x,super.go.y , super.go.x + getWidth(),super.go.y + getHeight());
+		g.drawLine(go.x,go.y , super.go.x + getWidth(),super.go.y + getHeight());
 		g.setColor(c);
 	}
 	

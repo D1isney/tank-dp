@@ -21,7 +21,6 @@ class ImageRotateTest {
 			tankL = rotateImage(tankL, 90);
 			Assertions.assertNotNull(tankL);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
