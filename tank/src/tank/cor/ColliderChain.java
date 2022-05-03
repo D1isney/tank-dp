@@ -17,7 +17,7 @@ public class ColliderChain implements Collider{
 	
 	/**
 	 * 对list做了一个封装
-	 */
+	 */ 
 	
 	//责任链 逻辑链
 	public ColliderChain() {

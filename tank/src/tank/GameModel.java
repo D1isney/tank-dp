@@ -31,7 +31,7 @@ public class GameModel {
 	
 	ColliderChain chain = new ColliderChain();
 	
-	private List<GameObject> objects = new ArrayList();
+	private List<GameObject> objects = new ArrayList<GameObject>();
 
 	public static GameModel getInstance() {
 		return INSTANCE;
@@ -45,8 +45,7 @@ public class GameModel {
 	 * 大管家
 	 */
 	//创建一个门面模式
-	private GameModel() {
-}
+	private GameModel() {}
 	
 	private void init(){
 		//初始化主战坦克

@@ -18,7 +18,6 @@ public class Tank extends GameObject {
 	public Rectangle rect = new Rectangle();
 	
 	private Random random = new Random();
-	public int x, y;
 
 	//记录上一次的变量
 	public int oldx,oldy;
@@ -59,13 +58,13 @@ public class Tank extends GameObject {
 			}
 	
 		} else {
-			fs = new DefaultFireStrategy();
-//			String badFSName = (String)PropertyMgr.get("badFS");
-//			try {
-//				fs = (FireStrategy)Class.forName(badFSName).getDeclaredConstructor().newInstance();
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
+//			fs = new DefaultFireStrategy();
+			String badFSName = (String)PropertyMgr.get("badFS");
+			try {
+				fs = (FireStrategy)Class.forName(badFSName).getDeclaredConstructor().newInstance();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		GameModel.getInstance().add(this);
@@ -206,6 +205,16 @@ public class Tank extends GameObject {
 	}
 	public void setY(int y) {
 		this.y = y;
+	}
+	
+	@Override
+	public int getWidth() {
+		return WIDTH; 
+	}
+
+	@Override
+	public int getHeight() {
+		return HEIGHT;
 	}
 	
 	public void back() {

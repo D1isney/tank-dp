@@ -23,4 +23,5 @@ public class BulletWallCollider implements Collider {
 		}
 		return true;
 	}
+
 }
