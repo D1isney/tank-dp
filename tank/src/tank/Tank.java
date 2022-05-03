@@ -10,7 +10,6 @@ import tank.strategy.FourDirFireStrategy;
 
 public class Tank extends GameObject {
 	
-	
 	private static final int SPEED = 2;
 	public static int WIDTH = ResourceMgr.goodTankU.getWidth();
 

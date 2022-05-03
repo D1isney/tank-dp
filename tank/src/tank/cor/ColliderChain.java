@@ -16,7 +16,7 @@ public class ColliderChain implements Collider{
 	private List<Collider> colliders = new LinkedList<>();
 	
 	/**
-	 * 对list做了一个封转
+	 * 对list做了一个封装
 	 */
 	
 	//责任链 逻辑链
