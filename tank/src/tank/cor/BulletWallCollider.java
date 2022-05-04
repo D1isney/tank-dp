@@ -16,6 +16,13 @@ public class BulletWallCollider implements Collider {
 			Wall w1 = (Wall)o2;
 			if(b1.rect.intersects(w1.rect)){
 				b1.die();
+//				if(b1.group.GOOD == b1.group) {
+//					return true;
+//				}
+//				else {
+//					b1.group = b1.group.BAD;
+//					b1.die();
+//				}
 			}
 		}
 		else if(o1 instanceof Wall && o2 instanceof Bullet) {
