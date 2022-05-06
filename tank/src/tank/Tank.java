@@ -2,8 +2,13 @@ package tank;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
+import tank.observer.TankFireEvent;
+import tank.observer.TankFireHandler;
+import tank.observer.TankFireObserver;
 import tank.strategy.DefaultFireStrategy;
 import tank.strategy.FireStrategy;
 import tank.strategy.FourDirFireStrategy;
@@ -221,5 +226,16 @@ public class Tank extends GameObject {
 		this.x = oldx;
 		this.y = oldy;
 	}
+
+
 	
+//	//观察者模式
+//	private List<TankFireObserver> fireObserver = Arrays.asList(new TankFireHandler());
+//	public void handlefire() {
+//		TankFireEvent event = new TankFireEvent(this);
+//		for(TankFireObserver o :fireObserver) {
+//			o.actionOnFire(event);
+//		}
+//	}
+//	
 }

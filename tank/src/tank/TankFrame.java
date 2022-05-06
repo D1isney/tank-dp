@@ -4,13 +4,11 @@ import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.ImageIcon;
 
 
 public class TankFrame extends Frame {
@@ -24,7 +22,7 @@ public class TankFrame extends Frame {
 //	public List<BaseTank> tanks = new ArrayList<>();
 //	public List<BaseExplode> explodes = new ArrayList<>();
 
-	public static final int GAME_WIDTH = 1280, GAME_HEIGHT = 700;
+	public static final int GAME_WIDTH = 960, GAME_HEIGHT = 700;
 
 	public TankFrame() {
 		setSize(GAME_WIDTH, GAME_HEIGHT);
@@ -63,6 +61,8 @@ public class TankFrame extends Frame {
 		GameModel.getInstance().paint(g);
 	}
 
+	
+	//观察者模式
 	class MyKeyListener extends KeyAdapter {
 		boolean bL = false;
 		boolean bU = false;
@@ -71,6 +71,7 @@ public class TankFrame extends Frame {
 
 		@Override
 		public void keyPressed(KeyEvent e) {
+//			e.getSource();
 			int key = e.getKeyCode();
 			switch (key) {
 			case KeyEvent.VK_LEFT:
@@ -85,7 +86,7 @@ public class TankFrame extends Frame {
 			case KeyEvent.VK_DOWN:
 				bD = true;
 				break;
-
+				
 			default:
 				break;
 			}
@@ -114,6 +115,7 @@ public class TankFrame extends Frame {
 
 			case KeyEvent.VK_CONTROL:
 				GameModel.getInstance().getMainTank().fire();
+//				GameModel.getInstance().getMainTank().handlefire();
 				break;
 
 			default:

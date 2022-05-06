@@ -1,12 +1,12 @@
 package tank.strategy;
 
-import decorator.RectDecorator;
-import decorator.TailDecorator;
 import tank.Audio;
 import tank.Bullet;
 import tank.GameModel;
 import tank.Group;
 import tank.Tank;
+import tank.decorator.RectDecorator;
+import tank.decorator.TailDecorator;
 
 public class DefaultFireStrategy implements FireStrategy {
 

@@ -1,4 +1,4 @@
-package decorator;
+package tank.decorator;
 
 import java.awt.Color;
 import java.awt.Graphics;
