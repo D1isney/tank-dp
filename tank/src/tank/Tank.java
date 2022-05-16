@@ -229,13 +229,13 @@ public class Tank extends GameObject {
 
 
 	
-//	//观察者模式
-//	private List<TankFireObserver> fireObserver = Arrays.asList(new TankFireHandler());
-//	public void handlefire() {
-//		TankFireEvent event = new TankFireEvent(this);
-//		for(TankFireObserver o :fireObserver) {
-//			o.actionOnFire(event);
-//		}
-//	}
-//	
+	//观察者模式
+	private List<TankFireObserver> fireObserver = Arrays.asList(new TankFireHandler());
+	public void handlefire() {
+		TankFireEvent event = new TankFireEvent(this);
+		for(TankFireObserver o :fireObserver) {
+			o.actionOnFire(event);
+		}
+	}
+	
 }

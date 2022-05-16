@@ -1,9 +1,10 @@
 package tank;
 
 import java.awt.Graphics;
+import java.io.Serializable;
 
 //游戏的物体
-public abstract class GameObject {
+public abstract class GameObject implements Serializable{
 	//位置
 	public int x;
 	public int y;

@@ -2,6 +2,11 @@ package tank;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +16,7 @@ import tank.cor.ColliderChain;
 import tank.cor.TankTankCollider;
 
 
-public class GameModel {
+public class GameModel{
 	//饿汉式-单例
 	private static final GameModel INSTANCE = new GameModel();
 
@@ -37,15 +42,12 @@ public class GameModel {
 		return INSTANCE;
 	}
 	
-	public Tank getMainTank() {
-		return myTank;
-	}
 	
 	/**
 	 * 大管家
 	 */
 	//创建一个门面模式
-	private GameModel() {}
+	public GameModel() {}
 	
 	private void init(){
 		//初始化主战坦克
@@ -121,5 +123,25 @@ public class GameModel {
 		// b.paint(g);
 		// }
 	}
+	public Tank getMainTank() {
+		return myTank;
+	}
+	
+	public void save() {
+		File f = new File("D:/Java-tank/tank.data");
+		try {
+			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
+			//不能实现序列化
+			oos.writeObject(myTank);
+			oos.writeObject(objects);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
+
+	public void load() {
+		
+	}
+	
 }
