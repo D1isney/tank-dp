@@ -3,17 +3,17 @@ package tank;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import tank.cor.BulletTankCollider;
-import tank.cor.Collider;
 import tank.cor.ColliderChain;
-import tank.cor.TankTankCollider;
+
 
 
 public class GameModel{
@@ -139,8 +139,22 @@ public class GameModel{
 		}
 	}
 
-
 	public void load() {
+		File f2 = new File("D:/Java-tank/tank.data");
+		try {
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f2));
+			//先写先读
+			myTank = (Tank)ois.readObject();
+			objects = (List)ois.readObject();
+			
+		}catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
