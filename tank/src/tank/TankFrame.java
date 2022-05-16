@@ -89,7 +89,7 @@ public class TankFrame extends Frame {
 			case KeyEvent.VK_S:
 				gm.save();
 				break;
-			case KeyEvent.VK_L:
+			case KeyEvent.VK_A:
 				gm.load();
 				break;
 				
