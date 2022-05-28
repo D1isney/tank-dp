@@ -230,6 +230,7 @@ public class Tank extends GameObject {
 
 	
 	//观察者模式
+	//transizent 透明的
 	private List<TankFireObserver> fireObserver = Arrays.asList(new TankFireHandler());
 	public void handlefire() {
 		TankFireEvent event = new TankFireEvent(this);

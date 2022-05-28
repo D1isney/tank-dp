@@ -128,50 +128,42 @@ public class GameModel{
 	}
 	
 	public void save() {
-		File f = new File("D:/Java_Tank/tank.data");
+		File f = new File("K:/JAVA/tank.data");
 		ObjectOutputStream oos = null;
 		try {
 			oos = new ObjectOutputStream(new FileOutputStream(f));
-			//不能实现序列化
 			oos.writeObject(myTank);
 			oos.writeObject(objects);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}finally{
-			if (oos != null)
+		} finally {
+			if(oos != null) {
 				try {
 					oos.close();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+			}
 		}
 	}
 
 	public void load() {
-		File f2 = new File("D:/Java_Tank/tank.data");
-		ObjectInputStream ois = null;
+		File f = new File("K:/JAVA/tank.data");
 		try {
-			ois = new ObjectInputStream(new FileInputStream(f2));
-			//先写先读
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
 			myTank = (Tank)ois.readObject();
 			objects = (List)ois.readObject();
-		}catch (FileNotFoundException e) {
+
+
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-		}finally {
-			if(ois != null) {
-				try {
-					ois.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
 		}
-		
 	}
 	
 }
